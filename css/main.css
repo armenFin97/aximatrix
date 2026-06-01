@@ -1,0 +1,421 @@
+/* ==========================================================================
+   Aximatrix — base styles
+   ========================================================================== */
+
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("../assets/fonts/plus-jakarta-sans-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("../assets/fonts/plus-jakarta-sans-medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("../assets/fonts/plus-jakarta-sans-semibold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("../assets/fonts/plus-jakarta-sans-bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url("../assets/fonts/roboto-mono-light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url("../assets/fonts/roboto-mono-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url("../assets/fonts/roboto-mono-medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url("../assets/fonts/roboto-mono-semibold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --font-family-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-family-mono: "Roboto Mono", ui-monospace, monospace;
+
+    --color-header-bg: rgba(227, 227, 227, 1);
+    --color-text: #010204;
+    --color-about-bg: #010204;
+    --color-about-text: #e3e3e3;
+    --color-about-line: rgba(227, 227, 227, 0.35);
+
+    --container-max-width: 120rem;
+    --section-padding-inline: 160px;
+
+    --about-padding-top: 220px;
+    --about-padding-bottom: 135px;
+    --about-intro-gap: 80px;
+    --about-block-gap: 64px;
+    --about-cards-gap: 24px;
+
+    --header-padding-inline: var(--section-padding-inline);
+    --header-padding-bottom: 60px;
+    --header-logo-offset-top: 50px;
+    --header-divider-gap: 100px;
+    --header-nav-gap: 40px;
+    --header-brand-gap: 24px;
+}
+
+body {
+    margin: 0;
+    color: var(--color-text);
+}
+
+/* Layout */
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-inline: auto;
+    padding-inline: var(--section-padding-inline);
+}
+
+/* Header */
+.header {
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+    background-color: var(--color-header-bg);
+}
+
+.header__inner {
+    padding-top: var(--header-logo-offset-top);
+    padding-bottom: var(--header-padding-bottom);
+}
+
+.header__content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--header-padding-inline);
+    position: relative;
+    z-index: 1;
+}
+
+.header__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 53px;
+}
+
+.header__logo {
+    display: block;
+    line-height: 0;
+}
+
+.header__logo-icon {
+    display: block;
+    height: 53px;
+    width: 410px;
+}
+
+.header__tagline {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.header__divider {
+    margin-top: var(--header-divider-gap);
+    width: 100%;
+}
+
+.header__divider-line {
+    margin: 0;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+/* Navigation (BEM block nested in header) */
+
+.nav__item {
+    text-align: end;
+}
+
+.nav__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav__list--grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: var(--header-nav-gap);
+}
+
+.nav__link {
+    color: var(--color-text);
+
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: end;
+}
+
+.nav__link:hover {
+    opacity: 0.7;
+}
+
+.nav__link:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+}
+
+/* About section */
+.about {
+    background-color: var(--color-about-bg);
+    color: var(--color-about-text);
+    font-family: var(--font-family-sans);
+}
+
+.about__inner {
+    padding-top: 120px;
+    padding-bottom: var(--about-padding-bottom);
+}
+
+.about__intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--about-intro-gap);
+}
+
+.about__lead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.about__description {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: flex-end;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.about__title,
+.about__subtitle,
+.about__quote,
+.about__text,
+.about__card-id,
+.about__card-text,
+.about__outro-lead,
+.about__outro-text,
+.about__ref-text {
+    margin: 0;
+}
+
+.about__title {
+    font-family: var(--font-family-sans);
+    background-color: #d6ff63;
+    color: #010204;
+    width: fit-content;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.about__subtitle {
+    font-family: var(--font-family-mono);
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.35;
+    color: var(--color-about-text);
+    letter-spacing: 1px;
+}
+
+.about__quote {
+    font-family: var(--font-family-sans);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    width: fit-content;
+    max-width: 100%;
+    color: #d6ff63;
+
+}
+
+.about__text {
+    font-family: var(--font-family-sans);
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 600;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.about__ref {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.about__ref--primary {
+    margin-top: var(--about-block-gap);
+}
+
+.about__ref--secondary {
+    margin-top: 64px;
+}
+
+.about__ref-text {
+    font-family: var(--font-family-mono);
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #d6ff63;
+    color: #010204;
+}
+
+.about__cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--about-cards-gap);
+    margin: var(--about-block-gap) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.about__card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about__card-id {
+    font-family: var(--font-family-mono);
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.about__card-line {
+    width: 100%;
+    height: 0;
+    margin: 0;
+    border: 0;
+    border-top: 2px solid #8b989e;
+}
+
+.about__card-text {
+    font-family: var(--font-family-sans);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.about__outro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 120px;
+}
+
+.about__outro-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+   align-items: center;
+}
+
+.about__outro-lead {
+    font-family: var(--font-family-sans);
+    font-size: 80px;
+    font-weight: 500;
+    background-color: #d6ff63;
+    color: #010204;
+    width: fit-content;
+
+}
+
+.about__outro-text {
+    font-family: var(--font-family-mono);
+    font-size: 24px;
+    font-weight: 600;
+    color: #e3e3e3;
+    line-height: 1.5;
+}
+
+.services__ref {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.services__ref-text {
+    margin: 0;
+}
+
+.services {
+    padding: 120px 0 80px 0;
+    background-color: #e3e3e3;
+}
+.services__title {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 160px;
+    color: #010204;
+}
+
+.services__intro {
+    display: flex;
+    width: 100%;
+    gap: 50px;
+}
+
+.services__tagline {
+font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    color: #010204;
+    width: 50%;
+}
+
+.services__content {
+    width: 50%;
+    background-color: #d6ff63;
+}
+

@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Aximatrix — responsive overrides (media queries only)
+   ========================================================================== */
+
+@media (max-width: 64rem) {
+  :root {
+    --section-padding-inline: 4rem;
+    --header-padding-bottom: 3rem;
+    --header-logo-offset-top: 2.5rem;
+    --header-divider-gap: 4rem;
+    --header-nav-gap: 2rem;
+    --about-padding-top: 8rem;
+    --about-padding-bottom: 5rem;
+    --about-intro-gap: 3rem;
+    --about-block-gap: 3rem;
+  }
+
+  .about__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --section-padding-inline: 1.5rem;
+    --header-padding-bottom: 2rem;
+    --header-nav-gap: 1.5rem;
+    --header-brand-gap: 1rem;
+    --about-padding-top: 5rem;
+    --about-padding-bottom: 3.5rem;
+    --about-cards-gap: 1.5rem;
+    --header-divider-gap: 2.5rem;
+  }
+
+  .about__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .header__content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+
+  .header__nav {
+    align-self: flex-end;
+  }
+}
