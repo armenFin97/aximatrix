@@ -1,4 +1,4 @@
-/* ==========================================================================
+v/* ==========================================================================
    Aximatrix — base styles
    ========================================================================== */
 
@@ -408,7 +408,7 @@ body {
 
 .services__tagline {
 font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 48px;
     color: #010204;
     width: 50%;
@@ -417,5 +417,20 @@ font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 .services__content {
     width: 50%;
     background-color: #d6ff63;
+    padding: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.services__heading {
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-weight: 600;
+}
+
+.services__text {
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-weight: 400;
 }
 
