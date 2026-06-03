@@ -5,6 +5,7 @@
 import { initNavigation } from './navigation.js';
 import { initAnimations } from './animations.js';
 import { initSlashDividers } from './divider.js';
+import { initCasesMedia } from './cases-media.js';
 
 function initFooterYear() {
   const yearEl = document.getElementById('footer-year');
@@ -18,5 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initAnimations();
   initSlashDividers();
+  initCasesMedia();
   initFooterYear();
 });

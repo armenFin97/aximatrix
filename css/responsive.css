@@ -2,6 +2,22 @@
    Aximatrix — responsive overrides (media queries only)
    ========================================================================== */
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cases__item-skeleton::after {
+    animation: none;
+  }
+}
+
+@media (hover: hover) {
+  .cases__item-media:hover .cases__item-image {
+    filter: grayscale(var(--cases-image-grayscale)) brightness(1.06);
+  }
+}
+
 @media (max-width: 64rem) {
   :root {
     --section-padding-inline: 4rem;
@@ -17,6 +33,38 @@
 
   .about__cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cases__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+
+  .cases__item-media {
+    max-width: 100%;
+  }
+
+  .process__intro {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .process__tagline,
+  .process__content {
+    width: 100%;
+  }
+
+  .process__list {
+    grid-template-columns: 1fr;
+  }
+
+  .contacts__header {
+  }
+
+  .contacts__form {
+  }
+
+  .footer__groups {
   }
 }
 
@@ -44,5 +92,39 @@
 
   .header__nav {
     align-self: flex-end;
+  }
+
+  .cases__status-text {
+    font-size: 40px;
+  }
+
+  .cases__list {
+    grid-template-columns: 1fr;
+  }
+
+  .process__title {
+    font-size: 64px;
+  }
+
+  .process__tagline {
+    font-size: 32px;
+  }
+
+  .contacts__title {
+  }
+
+  .contacts__field {
+  }
+
+  .footer__groups {
+  }
+
+  .footer__group {
+  }
+
+  .footer__bottom {
+  }
+
+  .footer__credit {
   }
 }
