@@ -1,0 +1,386 @@
+/* ==========================================================================
+   Interactions — links, buttons, forms, focus, motion
+   ========================================================================== */
+
+/* Shared interactive transitions (transform/opacity only — no layout shift) */
+.nav__link,
+.cases__link,
+.footer__link,
+.footer__back-top,
+.contacts__submit,
+.header__logo,
+.footer__logo,
+.cases__item {
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .nav__link,
+    .cases__link,
+    .footer__link,
+    .footer__back-top,
+    .contacts__submit,
+    .header__logo,
+    .footer__logo {
+        transition:
+            transform var(--motion-duration-base) var(--motion-ease-out),
+            opacity var(--motion-duration-base) var(--motion-ease-out),
+            color var(--motion-duration-base) var(--motion-ease-out),
+            background-color var(--motion-duration-base) var(--motion-ease-out),
+            border-color var(--motion-duration-base) var(--motion-ease-out),
+            box-shadow var(--motion-duration-base) var(--motion-ease-out);
+    }
+
+    .contacts__input {
+        transition:
+            opacity var(--motion-duration-base) var(--motion-ease-out),
+            box-shadow var(--motion-duration-base) var(--motion-ease-out);
+    }
+
+    .cases__item {
+        transition: transform var(--motion-duration-slow) var(--motion-ease-out);
+    }
+}
+
+/* Focus rings — links and logos on light backgrounds */
+.nav__link:focus-visible,
+.cases__link:focus-visible,
+.header__logo:focus-visible,
+.footer__logo:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color-dark);
+    outline-offset: var(--focus-ring-offset);
+}
+
+/* Focus rings — dark sections and primary actions */
+.footer__link:focus-visible,
+.footer__back-top:focus-visible,
+.contacts__submit:focus-visible,
+.contacts__input:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+}
+
+/* Navigation links — underline draw + subtle lift */
+.nav__link {
+    position: relative;
+    display: inline-block;
+    transform-origin: center right;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .nav__link::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: right center;
+        transition: transform var(--motion-duration-base) var(--motion-ease-out);
+    }
+
+    .nav__link:hover {
+        opacity: 0.85;
+        transform: scale(var(--interaction-scale-hover));
+    }
+
+    .nav__link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+}
+
+@media (hover: hover) {
+    .nav__link:hover {
+        opacity: 0.85;
+    }
+}
+
+.nav__link:active {
+    transform: scale(var(--interaction-scale-active));
+}
+
+/* Logo links */
+.header__logo,
+.footer__logo {
+    display: inline-block;
+    line-height: 0;
+    transform-origin: center center;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .header__logo:hover,
+    .footer__logo:hover {
+        opacity: 0.88;
+        transform: scale(var(--interaction-scale-hover));
+    }
+}
+
+@media (hover: hover) {
+    .header__logo:hover,
+    .footer__logo:hover {
+        opacity: 0.88;
+    }
+}
+
+.header__logo:active,
+.footer__logo:active {
+    transform: scale(var(--interaction-scale-active));
+}
+
+/* Cases link — dark section */
+.cases__link {
+    position: relative;
+    display: inline-block;
+    transform-origin: center center;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .cases__link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 100%;
+        height: 1px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: right center;
+        transition: transform var(--motion-duration-base) var(--motion-ease-out);
+    }
+
+    .cases__link:hover {
+        opacity: 0.9;
+        transform: scale(var(--interaction-scale-hover));
+    }
+
+    .cases__link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+}
+
+@media (hover: hover) {
+    .cases__link:hover {
+        opacity: 0.9;
+    }
+}
+
+.cases__link:active {
+    transform: scale(var(--interaction-scale-active));
+}
+
+/* Footer navigation links */
+.footer__link {
+    position: relative;
+    display: inline-block;
+    transform-origin: center left;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .footer__link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 100%;
+        height: 1px;
+        background-color: #d6ff63;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform var(--motion-duration-base) var(--motion-ease-out);
+    }
+
+    .footer__link:hover {
+        color: #d6ff63;
+        transform: translateX(2px);
+    }
+
+    .footer__link:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+@media (hover: hover) {
+    .footer__link:hover {
+        color: #d6ff63;
+    }
+}
+
+.footer__link:active {
+    transform: translateX(0) scale(var(--interaction-scale-active));
+}
+
+/* Primary buttons — interaction states only (base styles in main.css) */
+.contacts__submit,
+.footer__back-top {
+    transform-origin: center center;
+}
+
+@media (hover: hover) {
+    .contacts__submit:hover:not(:disabled):not(.is-submitting) {
+        opacity: 0.82;
+    }
+
+    .footer__back-top:hover {
+        opacity: 0.92;
+    }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .contacts__submit:hover:not(:disabled):not(.is-submitting) {
+        transform: scale(var(--interaction-scale-hover));
+    }
+
+    .footer__back-top:hover {
+        transform: scale(var(--interaction-scale-hover));
+        box-shadow: 0 4px 16px rgba(214, 255, 99, 0.18);
+    }
+}
+
+.contacts__submit:active:not(:disabled):not(.is-submitting),
+.footer__back-top:active {
+    opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .contacts__submit:active:not(:disabled):not(.is-submitting),
+    .footer__back-top:active {
+        transform: scale(var(--interaction-scale-active));
+    }
+
+    .footer__back-top:active {
+        box-shadow: none;
+    }
+}
+
+.contacts__submit:focus-visible,
+.footer__back-top:focus-visible {
+    opacity: 1;
+}
+
+.contacts__submit:disabled,
+.contacts__submit.is-submitting {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Form inputs — underline via inset shadow (constant 2px, no width changes) */
+.contacts__input:hover:not(:focus-visible):not(.is-invalid) {
+    box-shadow: inset 0 -2px 0 0 var(--input-border-hover);
+}
+
+.contacts__input:focus-visible {
+    box-shadow:
+        inset 0 -2px 0 0 var(--input-border-focus),
+        var(--input-glow-focus);
+}
+
+.contacts__input.is-valid:not(:focus-visible) {
+    box-shadow: inset 0 -2px 0 0 var(--input-border-valid);
+}
+
+.contacts__input.is-invalid:not(:focus-visible) {
+    box-shadow:
+        inset 0 -2px 0 0 var(--input-border-error),
+        0 4px 16px rgba(255, 112, 112, 0.1);
+}
+
+.contacts__input.is-invalid:focus-visible {
+    outline-color: var(--input-border-error);
+    box-shadow:
+        inset 0 -2px 0 0 var(--input-border-error),
+        0 4px 16px rgba(255, 112, 112, 0.1);
+}
+
+.contacts__field-message {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    min-height: 1.25rem;
+    font-family: var(--font-family-mono);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: right;
+    color: transparent;
+}
+
+.contacts__field-message.is-visible {
+    color: var(--input-border-error);
+}
+
+.contacts__field-message.is-success {
+    color: var(--input-border-valid);
+}
+
+/* Cases cards — subtle lift */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .cases__item:hover {
+        transform: translateY(-4px);
+    }
+
+    .cases__item-media:hover .cases__item-image {
+        filter: grayscale(var(--cases-image-grayscale)) brightness(1.06);
+        transform: scale(1.03);
+    }
+}
+
+@media (hover: hover) {
+    .cases__item-media:hover .cases__item-image {
+        filter: grayscale(var(--cases-image-grayscale)) brightness(1.06);
+    }
+}
+
+/* About cards — minimal hover feedback on dark section */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .about__card {
+        transition: transform var(--motion-duration-base) var(--motion-ease-out);
+    }
+
+    .about__card:hover {
+        transform: translateY(-2px);
+    }
+
+    .about__card:hover .about__card-line {
+        border-top-color: #d6ff63;
+        transition: border-color var(--motion-duration-base) var(--motion-ease-out);
+    }
+}
+
+.about__card-line {
+    transition: border-color var(--motion-duration-base) var(--motion-ease-out);
+}
+
+/* Reduced motion — disable decorative interaction motion */
+@media (prefers-reduced-motion: reduce) {
+    .nav__link::after,
+    .cases__link::after,
+    .footer__link::after {
+        transition: none;
+    }
+
+    .nav__link:hover::after,
+    .cases__link:hover::after,
+    .footer__link:hover::after {
+        transform: scaleX(1);
+    }
+
+    .nav__link:active,
+    .cases__link:active,
+    .footer__link:active,
+    .contacts__submit:active,
+    .footer__back-top:active,
+    .header__logo:active,
+    .footer__logo:active,
+    .cases__item:hover,
+    .about__card:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Aximatrix — tablet layout (768px–1024px)
+   Hybrid structure between mobile and desktop. Layout and spacing only.
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    --section-padding-inline: 3rem;
+    --header-padding-bottom: 2.5rem;
+    --header-logo-offset-top: 2rem;
+    --header-divider-gap: 3.5rem;
+    --header-nav-gap: 1.5rem;
+    --about-padding-top: 6rem;
+    --about-padding-bottom: 4rem;
+    --about-intro-gap: 2.5rem;
+    --about-block-gap: 2.5rem;
+    --about-cards-gap: 1.5rem;
+  }
+
+  /* Header */
+  .header__content {
+    gap: 2rem;
+  }
+
+  .header__logo-icon {
+    width: min(100%, 320px);
+    height: auto;
+  }
+
+  .header__brand {
+    gap: 2rem;
+  }
+
+  .nav__list--grid {
+    gap: var(--header-nav-gap) 2rem;
+  }
+
+  /* About */
+  .about__inner {
+    padding-top: 5rem;
+  }
+
+  .about__subtitle {
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+  }
+
+  .about__title {
+    font-size: 1.625rem;
+  }
+
+  .about__description {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .about__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about__card-id {
+    font-size: 1.75rem;
+  }
+
+  .about__outro {
+    margin-top: 4rem;
+  }
+
+  .about__outro-lead {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .about__outro-text {
+    font-size: 1.125rem;
+    text-align: center;
+  }
+
+  /* Services */
+  .services {
+    padding: 5rem 0 4rem;
+  }
+
+  .services__title {
+    font-size: 6rem;
+    line-height: 0.95;
+  }
+
+  .services__intro {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .services__tagline,
+  .services__content {
+    width: 100%;
+  }
+
+  .services__tagline {
+    font-size: 2rem;
+  }
+
+  .services__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem var(--about-cards-gap);
+  }
+
+  .services__item-id {
+    font-size: 1.75rem;
+  }
+
+  /* Cases */
+  .cases {
+    padding: 4rem 0;
+  }
+
+  .cases__header {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .cases__status-text {
+    font-size: 3rem;
+  }
+
+  .cases__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+
+  .cases__item-media {
+    max-width: 100%;
+  }
+
+  /* Process */
+  .process {
+    padding: 4rem 0;
+  }
+
+  .process__header {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .process__title {
+    font-size: 3rem;
+  }
+
+  .process__intro {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .process__tagline,
+  .process__content {
+    width: 100%;
+  }
+
+  .process__tagline {
+    font-size: 2rem;
+    padding: 1rem 0.75rem 0;
+  }
+
+  .process__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem var(--about-cards-gap);
+  }
+
+  .process__item-id {
+    font-size: 1.75rem;
+  }
+
+  /* Contacts */
+  .contacts {
+    padding: 4rem 0;
+  }
+
+  .contacts__inner {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .contacts__header,
+  .contacts__form {
+    width: 100%;
+  }
+
+  .contacts__header {
+    gap: 2rem;
+  }
+
+  .contacts__title {
+    font-size: 3rem;
+  }
+
+  .contacts__text {
+    font-size: 1.125rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 4rem 0;
+  }
+
+  .footer__layout {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  .footer__brand,
+  .footer__groups {
+    width: 100%;
+  }
+
+  .footer__groups {
+    gap: 3rem;
+  }
+
+  .footer__logo--collettivo {
+    width: min(100%, 320px);
+  }
+
+  .footer__bottom {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+}

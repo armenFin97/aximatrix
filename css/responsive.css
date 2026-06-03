@@ -1,5 +1,7 @@
 /* ==========================================================================
-   Aximatrix — responsive overrides (media queries only)
+   Aximatrix — global responsive utilities (non-breakpoint)
+   Breakpoint layouts: tablet.css (768–1024px), mobile.css (≤767px)
+   Desktop (≥1025px): main.css defaults
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -10,121 +12,8 @@
   .cases__item-skeleton::after {
     animation: none;
   }
-}
 
-@media (hover: hover) {
   .cases__item-media:hover .cases__item-image {
-    filter: grayscale(var(--cases-image-grayscale)) brightness(1.06);
-  }
-}
-
-@media (max-width: 64rem) {
-  :root {
-    --section-padding-inline: 4rem;
-    --header-padding-bottom: 3rem;
-    --header-logo-offset-top: 2.5rem;
-    --header-divider-gap: 4rem;
-    --header-nav-gap: 2rem;
-    --about-padding-top: 8rem;
-    --about-padding-bottom: 5rem;
-    --about-intro-gap: 3rem;
-    --about-block-gap: 3rem;
-  }
-
-  .about__cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cases__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: stretch;
-  }
-
-  .cases__item-media {
-    max-width: 100%;
-  }
-
-  .process__intro {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .process__tagline,
-  .process__content {
-    width: 100%;
-  }
-
-  .process__list {
-    grid-template-columns: 1fr;
-  }
-
-  .contacts__header {
-  }
-
-  .contacts__form {
-  }
-
-  .footer__groups {
-  }
-}
-
-@media (max-width: 48rem) {
-  :root {
-    --section-padding-inline: 1.5rem;
-    --header-padding-bottom: 2rem;
-    --header-nav-gap: 1.5rem;
-    --header-brand-gap: 1rem;
-    --about-padding-top: 5rem;
-    --about-padding-bottom: 3.5rem;
-    --about-cards-gap: 1.5rem;
-    --header-divider-gap: 2.5rem;
-  }
-
-  .about__cards {
-    grid-template-columns: 1fr;
-  }
-
-  .header__content {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2rem;
-  }
-
-  .header__nav {
-    align-self: flex-end;
-  }
-
-  .cases__status-text {
-    font-size: 40px;
-  }
-
-  .cases__list {
-    grid-template-columns: 1fr;
-  }
-
-  .process__title {
-    font-size: 64px;
-  }
-
-  .process__tagline {
-    font-size: 32px;
-  }
-
-  .contacts__title {
-  }
-
-  .contacts__field {
-  }
-
-  .footer__groups {
-  }
-
-  .footer__group {
-  }
-
-  .footer__bottom {
-  }
-
-  .footer__credit {
+    transform: none;
   }
 }

@@ -10,6 +10,9 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/interactions.css">
+  <link rel="stylesheet" href="css/tablet.css">
+  <link rel="stylesheet" href="css/mobile.css">
   <link rel="stylesheet" href="css/responsive.css">
   <script type="module" src="js/main.js"></script>
 </head>
@@ -52,12 +55,22 @@
   </header>
 
   <main class="main">
-    <section class="about" id="about" aria-labelledby="about-title">
+    <section class="about about--terminal-pending" id="about" aria-labelledby="about-title" data-about-terminal>
       <div class="container about__inner">
         <div class="about__intro">
           <div class="about__lead">
-            <h2 class="about__title" id="about-title">* system_init: hello!</h2>
-            <p class="about__subtitle">the operating system your business actually runs on.</p>
+            <h2 class="about__title" id="about-title">
+              <span class="about__typewriter-reserve" aria-hidden="true">* system_init: hello!</span>
+              <span class="about__typewriter-layer">
+                <span class="about__typewriter-text" aria-hidden="true"></span>
+              </span>
+            </h2>
+            <p class="about__subtitle">
+              <span class="about__typewriter-reserve" aria-hidden="true">the operating system your business actually runs on.</span>
+              <span class="about__typewriter-layer">
+                <span class="about__typewriter-text" aria-hidden="true"></span>
+              </span>
+            </p>
           </div>
 
           <div class="about__description">
@@ -346,24 +359,34 @@
           </p>
         </header>
 
-        <form class="contacts__form" action="#" method="post">
+        <form class="contacts__form" action="#" method="post" novalidate>
           <div class="contacts__field">
             <label class="contacts__label visually-hidden" for="contacts-name">Your name</label>
-            <input class="contacts__input" type="text" id="contacts-name" name="name" placeholder="// Your name"
-              autocomplete="name" required>
+            <div class="contacts__input-wrap">
+              <input class="contacts__input" type="text" id="contacts-name" name="name" placeholder="// Your name"
+                autocomplete="name" required aria-describedby="contacts-name-message">
+              <span class="contacts__field-message" id="contacts-name-message" role="alert"></span>
+            </div>
           </div>
 
           <div class="contacts__field">
             <label class="contacts__label visually-hidden" for="contacts-email">Email</label>
-            <input class="contacts__input" type="email" id="contacts-email" name="email" placeholder="// Email"
-              autocomplete="email" required>
+            <div class="contacts__input-wrap">
+              <input class="contacts__input" type="email" id="contacts-email" name="email" placeholder="// Email"
+                autocomplete="email" required aria-describedby="contacts-email-message">
+              <span class="contacts__field-message" id="contacts-email-message" role="alert"></span>
+            </div>
           </div>
 
           <div class="contacts__field">
             <label class="contacts__label visually-hidden" for="contacts-message">What&rsquo;s breaking in your
               operation?</label>
-            <input class="contacts__input contacts__input--message" type="text" id="contacts-message" name="message"
-              placeholder="// What&rsquo;s breaking in your operation?" required>
+            <div class="contacts__input-wrap">
+              <input class="contacts__input contacts__input--message" type="text" id="contacts-message" name="message"
+                placeholder="// What&rsquo;s breaking in your operation?" required
+                aria-describedby="contacts-message-message">
+              <span class="contacts__field-message" id="contacts-message-message" role="alert"></span>
+            </div>
           </div>
 
           <div class="contacts__field contacts__field--submit">

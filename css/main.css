@@ -117,6 +117,37 @@
     --cases-skeleton-fade-duration: 0.4s;
     --cases-skeleton-shimmer-duration: 1.6s;
     --cases-image-grayscale: 100%;
+
+    /* 8px spacing scale */
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 2.5rem;
+    --space-6: 3rem;
+
+    /* Motion */
+    --motion-duration-fast: 150ms;
+    --motion-duration-base: 200ms;
+    --motion-duration-slow: 250ms;
+    --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+    /* Interaction */
+    --interaction-scale-hover: 1.02;
+    --interaction-scale-active: 0.98;
+    --focus-ring-width: 2px;
+    --focus-ring-offset: 3px;
+    --focus-ring-color: #d6ff63;
+    --focus-ring-color-dark: #010204;
+
+    /* Form */
+    --input-border-default: #8b989e;
+    --input-border-hover: #b0babf;
+    --input-border-focus: #d6ff63;
+    --input-border-valid: #d6ff63;
+    --input-border-error: #ff7070;
+    --input-glow-focus: 0 4px 20px rgba(214, 255, 99, 0.12);
 }
 
 html {
@@ -229,7 +260,6 @@ body {
 
 .nav__link {
     color: var(--color-text);
-
     font-family: var(--font-family-jakarta);
     font-weight: 700;
     text-decoration: none;
@@ -237,15 +267,6 @@ body {
     line-height: 1.2;
     white-space: nowrap;
     text-align: end;
-}
-
-.nav__link:hover {
-    opacity: 0.7;
-}
-
-.nav__link:focus-visible {
-    outline: 2px solid var(--color-text);
-    outline-offset: 2px;
 }
 
 /* About section */
@@ -296,21 +317,122 @@ body {
 }
 
 .about__title {
+    position: relative;
     font-family: var(--font-family-jakarta);
-    background-color: #d6ff63;
-    color: #010204;
     width: fit-content;
+    max-width: 100%;
     font-size: 30px;
     font-weight: 600;
 }
 
+.about__title .about__typewriter-layer {
+    color: #010204;
+}
+
+.about.is-terminal-active .about__title .about__typewriter-layer,
+.about.is-terminal-complete .about__title .about__typewriter-layer,
+.about.is-terminal-reduced .about__title .about__typewriter-layer {
+    background-color: #d6ff63;
+}
+
 .about__subtitle {
+    position: relative;
     font-family: var(--font-family-mono);
     font-size: 42px;
     font-weight: 300;
     line-height: 1.35;
     color: var(--color-about-text);
     letter-spacing: 1px;
+    width: fit-content;
+    max-width: 100%;
+}
+
+/* About terminal boot sequence — reserve final dimensions, type in overlay */
+.about__typewriter-reserve {
+    display: block;
+    visibility: hidden;
+    user-select: none;
+    pointer-events: none;
+}
+
+.about__typewriter-layer {
+    position: absolute;
+    inset: 0;
+}
+
+.about__typewriter-text {
+    white-space: pre-wrap;
+}
+
+.about.is-terminal-reduced .about__typewriter-layer {
+    position: static;
+}
+
+.about__cursor {
+    display: inline-block;
+    font-family: var(--font-family-mono);
+    font-weight: 400;
+    line-height: 1;
+    margin-left: 1px;
+    vertical-align: baseline;
+    animation: about-terminal-cursor-blink 1.06s step-start infinite;
+    will-change: opacity;
+}
+
+.about__title .about__cursor {
+    color: #010204;
+}
+
+.about__subtitle .about__cursor {
+    color: #d6ff63;
+}
+
+.about--terminal-pending .about__description:not(.is-terminal-description-visible) {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.about__description.is-terminal-description-visible {
+    animation: about-terminal-description-reveal 0.75s ease forwards;
+}
+
+@keyframes about-terminal-cursor-blink {
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes about-terminal-description-reveal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about__cursor {
+        animation: none;
+        opacity: 1;
+    }
+
+    .about--terminal-pending .about__description:not(.is-terminal-description-visible) {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .about__description.is-terminal-description-visible {
+        animation: none;
+        opacity: 1;
+    }
 }
 
 .about__quote {
@@ -623,7 +745,8 @@ body {
     filter: grayscale(var(--cases-image-grayscale));
     transition:
         opacity var(--cases-image-fade-duration) ease,
-        filter var(--cases-image-fade-duration) ease;
+        filter var(--cases-image-fade-duration) ease,
+        transform var(--motion-duration-slow) var(--motion-ease-out);
 }
 
 .cases__item-media--loaded .cases__item-image {
@@ -875,27 +998,34 @@ body {
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: var(--space-4);
 }
 
-.contacts__field {}
+.contacts__field {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
 
-.contacts__field--submit {}
-
-.contacts__label {}
+.contacts__input-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: calc(var(--space-1) + 1.25rem);
+}
 
 .contacts__input {
+    box-sizing: border-box;
     width: 100%;
-    padding: 12px 12px;
+    padding: 12px;
+    margin: 0;
     border: none;
-    outline: none;
-    border-bottom: 2px solid #8b989e;
     background-color: transparent;
-
     font-family: var(--font-family-mono);
     font-size: 20px;
     font-weight: 600;
     color: #e3e3e3;
+    border-radius: 0;
+    box-shadow: inset 0 -2px 0 0 var(--input-border-default);
 }
 
 .contacts__input::placeholder {
@@ -903,19 +1033,28 @@ body {
     font-size: 14px;
     font-weight: 600;
     color: #8b989e;
+    opacity: 1;
 }
 
-.contacts__field {
-    display: flex;
-    justify-content: end;
+@media (prefers-reduced-motion: no-preference) {
+    .contacts__input::placeholder {
+        transition: opacity var(--motion-duration-fast) var(--motion-ease-out);
+    }
+
+    .contacts__input:focus::placeholder {
+        opacity: 0.45;
+    }
+}
+
+.contacts__field--submit {
+    margin-top: var(--space-1);
 }
 
 .contacts__submit {
     font-family: var(--font-family-jakarta);
     font-weight: 700;
-    color: #D6FF63;
+    color: #d6ff63;
     border: none;
-    outline: none;
     background-color: transparent;
     cursor: pointer;
 }
@@ -1044,6 +1183,6 @@ body {
     font-weight: 700;
     font-size: 18px;
     color: #010204;
-    background-color: #D6FF63;
+    background-color: #d6ff63;
     text-decoration: none;
 }

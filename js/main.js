@@ -4,6 +4,8 @@
 
 import { initNavigation } from './navigation.js';
 import { initAnimations } from './animations.js';
+import { initAboutTerminal } from './about-terminal.js';
+import { initForm } from './form.js';
 import { initSlashDividers } from './divider.js';
 import { initCasesMedia } from './cases-media.js';
 
@@ -18,6 +20,8 @@ function initFooterYear() {
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initAnimations();
+  initAboutTerminal();
+  initForm();
   initSlashDividers();
   initCasesMedia();
   initFooterYear();
