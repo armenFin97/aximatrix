@@ -1,25 +1,29 @@
 /**
- * Contacts form — interaction and validation states.
+ * Contacts form — validation + submit to Cloudflare Worker (Resend).
  */
 
+const CONTACT_API_URL = "https://aximatrix-contact.armenfin97.workers.dev/";
+
 const SELECTORS = {
-  form: '.contacts__form',
-  input: '.contacts__input',
-  submit: '.contacts__submit',
+  form: ".contacts__form",
+  input: ".contacts__input",
+  submit: ".contacts__submit",
 };
 
 const CLASSES = {
-  filled: 'is-filled',
-  valid: 'is-valid',
-  invalid: 'is-invalid',
-  submitting: 'is-submitting',
-  messageVisible: 'is-visible',
-  messageSuccess: 'is-success',
+  filled: "is-filled",
+  valid: "is-valid",
+  invalid: "is-invalid",
+  submitting: "is-submitting",
+  messageVisible: "is-visible",
+  messageSuccess: "is-success",
 };
 
 const MESSAGES = {
-  required: 'This field is required.',
-  email: 'Enter a valid email address.',
+  required: "This field is required.",
+  email: "Enter a valid email address.",
+  sendError: "Could not send. Please try again.",
+  sendSuccess: "Sent. We'll get back to you.",
 };
 
 /**
@@ -29,12 +33,12 @@ const MESSAGES = {
 function validateField(input) {
   const value = input.value.trim();
   let isValid = true;
-  let message = '';
+  let message = "";
 
   if (!value) {
     isValid = false;
     message = MESSAGES.required;
-  } else if (input.type === 'email' && !input.checkValidity()) {
+  } else if (input.type === "email" && !input.checkValidity()) {
     isValid = false;
     message = MESSAGES.email;
   }
@@ -42,12 +46,14 @@ function validateField(input) {
   input.classList.toggle(CLASSES.filled, value.length > 0);
   input.classList.toggle(CLASSES.valid, isValid && value.length > 0);
   input.classList.toggle(CLASSES.invalid, !isValid);
-  input.setAttribute('aria-invalid', String(!isValid));
+  input.setAttribute("aria-invalid", String(!isValid));
 
-  const messageEl = input.closest('.contacts__field')?.querySelector('.contacts__field-message');
+  const messageEl = input
+    .closest(".contacts__field")
+    ?.querySelector(".contacts__field-message");
 
   if (messageEl) {
-    messageEl.textContent = isValid ? '' : message;
+    messageEl.textContent = isValid ? "" : message;
     messageEl.classList.toggle(CLASSES.messageVisible, !isValid);
     messageEl.classList.remove(CLASSES.messageSuccess);
   }
@@ -68,6 +74,35 @@ function updateFilledState(input) {
 }
 
 /**
+ * @param {HTMLFormElement} form
+ * @param {string} text
+ * @param {boolean} success
+ */
+function showFormStatus(form, text, success) {
+  const messageEl = form.querySelector("#contacts-message-message");
+
+  if (!messageEl) {
+    return;
+  }
+
+  messageEl.textContent = text;
+  messageEl.classList.add(CLASSES.messageVisible);
+  messageEl.classList.toggle(CLASSES.messageSuccess, success);
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @param {NodeListOf<HTMLInputElement>} inputs
+ */
+function resetFormState(form, inputs) {
+  form.reset();
+  inputs.forEach((input) => {
+    input.classList.remove(CLASSES.filled, CLASSES.valid, CLASSES.invalid);
+    input.removeAttribute("aria-invalid");
+  });
+}
+
+/**
  * Initialize contacts form interactions.
  */
 export function initForm() {
@@ -81,18 +116,18 @@ export function initForm() {
   const submitButton = form.querySelector(SELECTORS.submit);
 
   inputs.forEach((input) => {
-    input.addEventListener('input', () => {
+    input.addEventListener("input", () => {
       updateFilledState(input);
     });
 
-    input.addEventListener('blur', () => {
+    input.addEventListener("blur", () => {
       if (input.value.trim() || input.classList.contains(CLASSES.invalid)) {
         validateField(input);
       }
     });
   });
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     let isFormValid = true;
@@ -118,22 +153,35 @@ export function initForm() {
       submitButton.disabled = true;
     }
 
-    window.setTimeout(() => {
+    const payload = {
+      name: form.name?.value?.trim() || "",
+      email: form.email?.value?.trim() || "",
+      message: form.message?.value?.trim() || "",
+      company: form.company?.value?.trim() || "",
+    };
+
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || MESSAGES.sendError);
+      }
+
+      resetFormState(form, inputs);
+      showFormStatus(form, MESSAGES.sendSuccess, true);
+    } catch {
+      showFormStatus(form, MESSAGES.sendError, false);
+    } finally {
       if (submitButton) {
         submitButton.classList.remove(CLASSES.submitting);
         submitButton.disabled = false;
       }
-
-      form.reset();
-      inputs.forEach((input) => {
-        input.classList.remove(CLASSES.filled, CLASSES.valid, CLASSES.invalid);
-        input.removeAttribute('aria-invalid');
-      });
-
-      form.querySelectorAll('.contacts__field-message').forEach((messageEl) => {
-        messageEl.textContent = '';
-        messageEl.classList.remove(CLASSES.messageVisible, CLASSES.messageSuccess);
-      });
-    }, 600);
+    }
   });
 }

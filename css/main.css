@@ -94,8 +94,8 @@
     --color-about-text: #e3e3e3;
     --color-about-line: rgba(227, 227, 227, 0.35);
 
-    --container-max-width: 120rem;
-    --section-padding-inline: 160px;
+    --container-max-width: 90rem;
+    --section-padding-inline: 80px;
 
     --about-padding-top: 220px;
     --about-padding-bottom: 135px;
@@ -222,7 +222,7 @@ body {
 .header__tagline {
     margin: 0;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.4;
 }
 
@@ -338,7 +338,7 @@ body {
 .about__subtitle {
     position: relative;
     font-family: var(--font-family-mono);
-    font-size: 42px;
+    font-size: 41px;
     font-weight: 300;
     line-height: 1.35;
     color: var(--color-about-text);
@@ -529,7 +529,7 @@ body {
 
 .about__outro-lead {
     font-family: var(--font-family-jakarta);
-    font-size: 80px;
+    font-size: 68px;
     font-weight: 500;
     background-color: #d6ff63;
     color: #010204;
@@ -539,7 +539,7 @@ body {
 
 .about__outro-text {
     font-family: var(--font-family-mono);
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 600;
     color: #e3e3e3;
     line-height: 1.5;
@@ -559,6 +559,7 @@ body {
     color: #D6FF63;
     font-family: "Roboto Mono", ui-monospace, monospace;
     font-weight: 600;
+    font-size: 18px;
 }
 
 .services {
@@ -569,7 +570,7 @@ body {
 .services__title {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
     font-weight: 500;
-    font-size: 160px;
+    font-size: 195px;
     color: #010204;
 }
 
@@ -599,12 +600,14 @@ body {
 
 .services__heading {
     font-family: "Roboto Mono", ui-monospace, monospace;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .services__text {
     font-family: "Roboto Mono", ui-monospace, monospace;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .services__item {
@@ -632,11 +635,13 @@ body {
 .services__item-title {
     font-family: var(--font-family-jakarta);
     font-weight: var(--font-weight-extrabold);
+    font-size: 20px;
 }
 
 .services__item-text {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 .cases {
@@ -756,8 +761,8 @@ body {
 .cases__item-id {
     margin: 0;
     font-family: var(--font-family-mono);
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 18px;
     color: var(--color-about-text);
 }
 
@@ -831,20 +836,22 @@ body {
 .process__heading {
     margin: 0;
     font-family: var(--font-family-mono);
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .process__title {
     font-family: var(--font-family-jakarta);
     font-weight: 500;
     color: #e3e3e3;
-    font-size: 64px;
+    font-size: 66px;
 }
 
 .process__text {
     margin: 0;
     font-family: var(--font-family-mono);
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .process__ref {
@@ -901,6 +908,7 @@ body {
     margin: 0;
     font-family: var(--font-family-jakarta);
     font-weight: 600;
+    font-size: 16px;
     color: #D6FF63;
 }
 
@@ -908,6 +916,7 @@ body {
     margin: 0;
     font-family: var(--font-family-jakarta);
     font-weight: 600;
+    font-size: 16px;
     color: #e3e3e3;
 }
 
@@ -916,7 +925,8 @@ body {
     margin-top: 20px;
     font-family: var(--font-family-mono);
     font-weight: 600;
-    color: #e3e3e3;
+    font-size: 16px;
+    color: #8b989e;
 }
 
 .process__outro {
@@ -940,6 +950,7 @@ body {
     font-family: var(--font-family-jakarta);
 
     font-weight: 600;
+    font-size: 16px;
     line-height: 1.5;
     color: #e3e3e3;
 }
@@ -982,7 +993,7 @@ body {
 
 .contacts__title {
     font-family: var(--font-family-jakarta);
-    font-size: 64px;
+    font-size: 66px;
     font-weight: 500;
     color: #d6ff63;
 }
@@ -1005,6 +1016,19 @@ body {
     display: flex;
     justify-content: end;
     width: 100%;
+}
+
+.contacts__field--honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    pointer-events: none;
 }
 
 .contacts__input-wrap {

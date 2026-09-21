@@ -1,0 +1,9 @@
+{
+  "name": "aximatrix-contact",
+  "main": "contact.js",
+  "compatibility_date": "2024-09-23",
+  "workers_dev": true,
+  "vars": {
+    "TO_EMAIL": "armenfin97@gmail.com"
+  }
+}
